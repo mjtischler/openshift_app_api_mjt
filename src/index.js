@@ -3,8 +3,8 @@ import io from 'socket.io';
 import jwt from 'jsonwebtoken';
 import auth from './auth.js';
 
-const port = process.env.PORT || 5001;
 const environment = process.env.NODE_ENV || 'production';
+const port = environment === 'production' ? 8081 : 5001;
 const ioServer = server.createServer()
 const ioSocket = io(ioServer);
 const sequenceNumberByClient = new Map();
@@ -42,6 +42,6 @@ ioSocket.use((socket, next) => {
 });
 
 // eslint-disable-next-line no-console
-ioServer.listen(5001, () => console.log(`Socket.io listening on port ${port} in the ${environment} environment`));
+ioServer.listen(port, () => console.log(`Socket.io listening on port ${port} in the ${environment} environment`));
 
 export default ioServer;
