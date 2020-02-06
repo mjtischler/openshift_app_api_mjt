@@ -2,7 +2,7 @@
 import server from 'http';
 import io from 'socket.io';
 import jwt from 'jsonwebtoken';
-import auth from './auth.js';
+import getAuthValues from './auth.js';
 
 const environment = process.env.NODE_ENV || 'production';
 const port = 8081;
@@ -10,6 +10,7 @@ const socketIp = environment === 'production' ? '0.0.0.0' : null;
 const ioServer = server.createServer()
 const ioSocket = io(ioServer);
 const sequenceNumberByClient = new Map();
+const auth = getAuthValues(process.env || null);
 
 ioSocket.use((socket, next) => {
   if (socket.handshake.query && socket.handshake.query.token){
