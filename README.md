@@ -22,6 +22,8 @@ Access controls are stored in [/server/src/auth.js](https://github.com/mjtischle
 
 **NOTE**: This is a poor way of handling authorization and should only be used for testing/learning.
 
+Alternatively, you can create a parallel repo and store this auth data in `process.env` by defining each key in the Dockerfile. Again, this is to be used only for testing.
+
 ## Docker Commands
 ------------------
 ```bash
@@ -54,3 +56,7 @@ docker system prune # WARNING: Append with -a to delete all non-running images
 docker tag ${your_name}/openshift_api_mjt:${tag} ${your_docker_repo}:${tag}
 docker push ${your_docker_repo}/openshift_api_mjt:${tag}
 ```
+
+When deploying to OpenShift, your Docker Hub url will be formed as:
+
+`docker.io/${your_docker_hub}/openshift_api_mjt:${tag}`
