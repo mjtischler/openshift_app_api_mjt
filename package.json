@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf dist/ && babel ./src --out-dir dist/ --ignore ./node_modules,./.babelrc,./package.json,./npm-debug.log --copy-files",
     "start": "npm run build && cross-env NODE_ENV=production node dist/index.js",
+    "docker": "node dist/index.js",
     "dev": "cross-env NODE_ENV=development nodemon src/index.js --exec babel-node --presets babel-preset-env"
   },
   "author": "Matt Tischler (mjtischler@gmail.com)",
@@ -30,5 +31,9 @@
   },
   "engines": {
     "node": ">=10.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mjtischler/openshift_app_api_mjt.git"
   }
 }
